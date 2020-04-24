@@ -1,39 +1,45 @@
-const Sequelize = require('sequelize');
-const { db } = require('./../db.js');
+const Sequelize = require("sequelize");
+const { db } = require("./../db.js");
 
 const { STRING } = Sequelize;
 
-const Employee = db.define('employee', {
+const Employee = db.define("employee", {
   firstName: {
     type: STRING,
     allowNull: false,
     validate: {
       notEmpty: true,
-      len: [2, 30],
-    },
+      len: [2, 30]
+    }
   },
   lastName: {
     type: STRING,
     allowNull: false,
     validate: {
       notEmpty: true,
-      len: [2, 30],
-    },
+      len: [2, 30]
+    }
   },
   email: {
     type: STRING,
     allowNull: false,
     validate: {
-      isEmail: true,
-    },
+      isEmail: true
+    }
   },
   title: {
     type: STRING,
     allowNull: false,
     validate: {
-      notEmpty: true,
-    },
+      notEmpty: true
+    }
   },
+  name: {
+    type: Sequelize.VIRTUAL,
+    get() {
+      return `${this.firstName} ${this.lastName}`;
+    }
+  }
 });
 
 module.exports = { Employee };
