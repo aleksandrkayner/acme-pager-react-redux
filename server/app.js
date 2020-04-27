@@ -4,6 +4,8 @@ const app = express();
 app.use(express.json());
 // Do not touch this file
 const { Employee } = require("./db/index.js");
+const volleyball = require("volleyball");
+app.use(volleyball);
 
 app.use(express.static(path.join(__dirname, "..", "public")));
 app.use(express.static(path.join(__dirname, "..", "dist")));
