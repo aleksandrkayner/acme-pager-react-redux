@@ -12,7 +12,14 @@ class Nav extends Component {
 
     return (
       <div>
-        <h3>Companies Employees ({employees.count ? employees.count : ""})</h3>
+        <h1
+          onClick={() => {
+            location.assign("/");
+          }}
+        >
+          Companies Employees ({employees.count ? employees.count : ""})
+        </h1>
+
         <nav>
           <Link to="/employees/0">Employees List</Link>
           <Link to="/createEmployee">Create Employee</Link>

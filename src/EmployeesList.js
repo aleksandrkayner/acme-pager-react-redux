@@ -8,7 +8,6 @@ class EmployeesList extends Component {
     super();
   }
   componentDidMount() {
-    console.log("hello hello", this.props);
     this.props.loadPage(this.props.match.params.page);
   }
   render() {
@@ -27,8 +26,10 @@ class EmployeesList extends Component {
             <th>Email Address</th>
           </tr>
         </table> */}
+        <h2>Employees List </h2>
+
         <div className="table" align="center">
-          <table className="table2" align="center" width="50%">
+          <table className="table2" align="center">
             <thead align="center">
               <tr>
                 <th className="a"></th>

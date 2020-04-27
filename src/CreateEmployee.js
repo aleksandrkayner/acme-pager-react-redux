@@ -14,51 +14,60 @@ class CreateEmployee extends React.Component {
   }
   render() {
     const { firstName, lastName, title, email } = this.state;
-    const { create } = this.props;
+    const { create, history } = this.props;
     return (
-      <div className="form">
-        <h2>Create Employee Form</h2>
-        <form onSubmit={ev => ev.preventDefault()}>
-          <input
-            value={firstName}
-            placeholder="first name"
-            onChange={e => {
-              this.setState({ firstName: e.target.value });
-            }}
-          />
-          <label>first name</label>
-          <input
-            value={lastName}
-            placeholder="last name"
-            onChange={e => {
-              this.setState({ lastName: e.target.value });
-            }}
-          />
-          <label>last name</label>
-          <input
-            value={email}
-            placeholder="email"
-            onChange={e => {
-              this.setState({ email: e.target.value });
-            }}
-          />
-          <label>email</label>
-          <input
-            value={title}
-            placeholder="job title"
-            onChange={e => {
-              this.setState({ title: e.target.value });
-            }}
-          />
-          <label>job title</label>
-          <button
-            onClick={() => {
-              create(firstName, lastName, email, title);
-            }}
-          >
-            Create
-          </button>
-        </form>
+      <div align="center">
+        <div className="form">
+          <h2>Create Employee Form</h2>
+          <form align="left" onSubmit={ev => ev.preventDefault()}>
+            <label align="left">first name</label>
+            <input
+              value={firstName}
+              placeholder="first name"
+              onChange={e => {
+                this.setState({ firstName: e.target.value });
+              }}
+            />
+
+            <label align="left">last name</label>
+            <input
+              value={lastName}
+              placeholder="last name"
+              onChange={e => {
+                this.setState({ lastName: e.target.value });
+              }}
+            />
+
+            <label align="left">email</label>
+            <input
+              value={email}
+              placeholder="email"
+              onChange={e => {
+                this.setState({ email: e.target.value });
+              }}
+            />
+
+            <label align="left">job title</label>
+            <input
+              value={title}
+              placeholder="job title"
+              onChange={e => {
+                this.setState({ title: e.target.value });
+              }}
+            />
+
+            <br />
+            <button
+              align="center"
+              className="createButton"
+              onClick={() => {
+                create(firstName, lastName, email, title, history.push);
+              }}
+            >
+              Create
+            </button>
+          </form>
+        </div>
       </div>
     );
   }
@@ -66,8 +75,8 @@ class CreateEmployee extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    create: (firstName, lastName, email, title) => {
-      dispatch(create(firstName, lastName, email, title));
+    create: (firstName, lastName, email, title, push) => {
+      dispatch(create(firstName, lastName, email, title, push));
     }
   };
 };

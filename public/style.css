@@ -1,3 +1,6 @@
+* {
+  background-color: rgb(230, 230, 223);
+}
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -29,6 +32,7 @@ nav {
   background-color: orange;
   padding: 1rem;
   margin: 2rem;
+  margin-top: 0;
   display: flex;
   flex-flow: row;
   justify-content: space-around;
@@ -36,12 +40,13 @@ nav {
 
 .table {
   display: inline-block;
-  width: 50em;
+  /* width: 50em; */
   overflow: auto;
   height: 20em;
   padding: 5px;
   margin: 5px;
   padding-right: 0;
+  border: solid orange 5px;
 }
 
 .table::-webkit-scrollbar {
@@ -83,5 +88,40 @@ button {
   width: 20px;
 }
 .b {
-  width: 75px;
+  width: 100px;
+}
+.tableNames {
+  display: flex;
+  flex-flow: row;
+  border: solid black 1px;
+  width: 710px;
+}
+.b > div {
+  display: flex;
+  flex-flow: row;
+}
+.createButton {
+  border: solid black 2px;
+  width: 90%;
+  padding: 5px;
+  margin-left: 24px;
+  background-color: rgb(202, 199, 199);
+}
+a:hover {
+  background-color: rgb(255, 0, 140);
+}
+.editButton {
+  border: solid black 2px;
+  width: 90%;
+  padding: 5px;
+  margin-left: 24px;
+  background-color: rgb(202, 199, 199);
+}
+h1 {
+  /* background-color: rgb(238, 15, 15); */
+  color: orange;
+  margin: 2rem;
+  margin-bottom: 0;
+  padding: 3rem;
+  background-image: url("./images/city.jpg");
 }

@@ -26,59 +26,66 @@ class EditForm extends Component {
     const { firstName, lastName, email, title } = this.state;
     const { change } = this.props;
     return (
-      <div className="form">
-        <h2>
-          Edit Page For: {firstName} {lastName}
-        </h2>
-        <form onSubmit={ev => ev.preventDefault()}>
-          <input
-            value={firstName}
-            placeholder="first name"
-            onChange={e => {
-              this.setState({ firstName: e.target.value });
-            }}
-          />
-          <label>first name</label>
-          <input
-            value={lastName}
-            placeholder="last name"
-            onChange={e => {
-              this.setState({ lastName: e.target.value });
-            }}
-          />
-          <label>last name</label>
-          <input
-            value={email}
-            placeholder="email"
-            onChange={e => {
-              this.setState({ email: e.target.value });
-            }}
-          />
-          <label>email</label>
-          <input
-            value={title}
-            placeholder="job title"
-            onChange={e => {
-              this.setState({ title: e.target.value });
-            }}
-          />
-          <label>job title</label>
-          <br />
-          <button
-            onClick={() => {
-              change(
-                firstName,
-                lastName,
-                email,
-                title,
-                this.props.match.params.id * 1,
-                this.props.history.push
-              );
-            }}
-          >
-            edit
-          </button>
-        </form>
+      <div align="center">
+        <div className="form">
+          <h2>
+            Edit Page For: {firstName} {lastName}
+          </h2>
+          <form onSubmit={ev => ev.preventDefault()} align="left">
+            <label>first name</label>
+            <input
+              value={firstName}
+              placeholder="first name"
+              onChange={e => {
+                this.setState({ firstName: e.target.value });
+              }}
+            />
+
+            <label>last name</label>
+            <input
+              value={lastName}
+              placeholder="last name"
+              onChange={e => {
+                this.setState({ lastName: e.target.value });
+              }}
+            />
+
+            <label>email</label>
+            <input
+              value={email}
+              placeholder="email"
+              onChange={e => {
+                this.setState({ email: e.target.value });
+              }}
+            />
+
+            <label>job title</label>
+            <input
+              value={title}
+              placeholder="job title"
+              onChange={e => {
+                this.setState({ title: e.target.value });
+              }}
+            />
+
+            <br />
+            <button
+              className="editButton"
+              onClick={() => {
+                change(
+                  firstName,
+                  lastName,
+                  email,
+                  title,
+                  this.props.match.params.id * 1,
+                  this.props.history.push
+                );
+              }}
+            >
+              edit
+            </button>
+          </form>
+        </div>
       </div>
     );
   }

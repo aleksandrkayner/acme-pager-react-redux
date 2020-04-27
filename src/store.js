@@ -106,7 +106,7 @@ const destroy = id => {
     dispatch(_destroy(id));
   };
 };
-const create = (firstName, lastName, email, title) => {
+const create = (firstName, lastName, email, title, push) => {
   return async dispatch => {
     const employee = await axios.post("/api/employees", {
       firstName: firstName,
@@ -114,7 +114,14 @@ const create = (firstName, lastName, email, title) => {
       email: email,
       title: title
     });
-    console.log("from create create", employee.data);
+    let lastPage = Math.ceil(store.getState().count / 50);
+    console.log(
+      "from create create",
+      store.getState().rows.length,
+      store.getState().count,
+      lastPage
+    );
+    push(`/employees/${lastPage - 1}`);
     return dispatch(_create(employee.data));
   };
 };
