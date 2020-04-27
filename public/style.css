@@ -1,7 +1,7 @@
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  /* width: 100%; */
 }
 
 td,
@@ -13,4 +13,75 @@ th {
 
 tr:nth-child(even) {
   background-color: #dddddd;
+}
+input {
+  width: 97%;
+  margin: 5px;
+}
+.form {
+  width: 500px;
+  border: solid black 1px;
+}
+label {
+  margin: 5px;
+}
+nav {
+  background-color: orange;
+  padding: 1rem;
+  margin: 2rem;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+}
+
+.table {
+  display: inline-block;
+  width: 50em;
+  overflow: auto;
+  height: 20em;
+  padding: 5px;
+  margin: 5px;
+  padding-right: 0;
+}
+
+.table::-webkit-scrollbar {
+  width: 8px;
+  height: 3px;
+  background-color: #aaa;
+  border-radius: 10px;
+}
+
+.table::-webkit-scrollbar-thumb {
+  background: red;
+  border-radius: 10px;
+}
+button {
+  margin: 10px;
+  width: 3rem;
+}
+.pageControl {
+  background-color: rgb(214, 245, 227);
+  border-radius: 20px;
+  border: solid black 1px;
+  justify-content: space-around;
+  padding: 1px;
+  margin: 15px;
+  width: 50%;
+  display: inline-block;
+}
+
+.mainForTable {
+  text-align: center;
+}
+.headerTable {
+  width: 50em;
+}
+.selected {
+  background-color: green;
+}
+.a {
+  width: 20px;
+}
+.b {
+  width: 75px;
 }

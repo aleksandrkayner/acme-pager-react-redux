@@ -4,13 +4,15 @@ import { HashRouter, Route } from "react-router-dom";
 import { loadEmployees } from "./store";
 import Nav from "./Nav";
 import EmployeesList from "./EmployeesList";
+import EditForm from "./EditForm";
+import CreateEmployee from "./CreateEmployee";
 
 class App extends Component {
   constructor() {
     super();
   }
   componentDidMount() {
-    this.props.load();
+    this.props.load(0);
   }
   render() {
     return (
@@ -18,6 +20,8 @@ class App extends Component {
         <HashRouter>
           <Route component={Nav} />
           <Route path="/employees/:page?" component={EmployeesList} />
+          <Route path="/editform/:id" component={EditForm} />
+          <Route path="/createEmployee" component={CreateEmployee} />
         </HashRouter>
       </div>
     );
@@ -26,8 +30,8 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    load: () => {
-      dispatch(loadEmployees());
+    load: page => {
+      dispatch(loadEmployees(page));
     }
   };
 };

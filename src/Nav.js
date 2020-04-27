@@ -9,11 +9,15 @@ class Nav extends Component {
   render() {
     const { employees } = this.props;
     console.log(employees);
+
     return (
-      <nav>
-        <h3>Companies Employees ({employees ? employees.length : ""})</h3>
-        <Link to="/employees/:page">Employees List</Link>
-      </nav>
+      <div>
+        <h3>Companies Employees ({employees.count ? employees.count : ""})</h3>
+        <nav>
+          <Link to="/employees/0">Employees List</Link>
+          <Link to="/createEmployee">Create Employee</Link>
+        </nav>
+      </div>
     );
   }
 }
