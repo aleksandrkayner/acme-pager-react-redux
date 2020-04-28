@@ -1,74 +1,92 @@
 const request = require("supertest");
-const app = require("../server/index");
-//const { expect } = require("chai");
-//const { app } = require("supertest")(require("../server/app"));
-const express = require("express");
-
-// const app = express();
-// describe("true equal true", () => {
-//   it("test true", () => {
-//     expect(true).to.equal(true);
-//   });
-// });
-// describe("GET /api/employees", () => {
-// describe("with correct status", async () => {
-//   it("test get route", async () => {
-//     const response = await app.get("/api/employees/:page?");
-//     console.log(response);
-//     expect(response.status).to.equal(200);
-//   });
-// });
-// });
-describe("GET /api/employees/:page?", function() {
-  it("responds ", function(done) {
-    request(app)
-      .get("/api/employees/:page?")
-      .expect(200)
-      .expect(/hello/, done)
-      .end(function(err, res) {
-        if (err) throw err;
-        res.should.have.status(200);
-        done();
-      });
-  });
-});
-
-describe("POST /employees", function() {
-  //const app = express();
-  it('user.name should be an case-insensitive match for "john"', function() {
-    request(app)
-      .post("/api/employees")
-      .send({ firstName: "john" }) // x-www-form-urlencoded upload
-      .set("Accept", "application/json")
-      .expect(function(res) {
-        res.body.id = "some fixed id";
-        res.body.name = res.body.name.toLowerCase();
-      })
-      .expect(200, {
-        id: "some fixed id",
-        name: "john"
-      });
-  });
-});
-describe("Should return a response with status: 204 ", async () => {
-  it("test delete", async done => {
-    // const app = express();
-    app.use(express.json());
-    const response = await app.get("/api/employees/:page", (req, res) => {
-      response.status(204);
+const { app } = require("../server/app.js");
+const { expect } = require("chai");
+// const { seed } = require("../server/db/seed");
+// const { db, Employee } = require("../server/db/index.js");
+describe("get routes", function() {
+  describe("GET /api/employees/:page?", function() {
+    it("responds ", function(done) {
+      request(app)
+        .get("/api/employees/1")
+        .expect(200)
+        .expect(res => {
+          expect(res.body).to.have.property("count");
+          expect(res.body).to.have.property("rows");
+        })
+        .end(function(err, res) {
+          if (err) throw err;
+          done();
+        });
     });
-    console.log(response, "<><><><><><><><><><><><><><><><><><><><><><><><");
-    request(app)
-      .delete("/api/employees/:id")
-      .expect("Content-type", /json/)
-      .expect(response.status)
-      .to.equal(204)
-      .end(function(err, res) {
-        if (err) throw err;
-      });
+    it("sends 400 on a bad request", function(done) {
+      request(app)
+        .get("/api/employees/a")
+        .expect(400)
+        .end(function(err, res) {
+          if (err) throw err;
+          done();
+        });
+    });
+  });
+});
 
-    // .end((err, res) => {
-    //   if (err) throw err;
-    // });
+describe("test post route", () => {
+  describe(" POST to /api/employees", () => {
+    it("req.body", done => {
+      request(app)
+        .post("/api/employees")
+        .send({
+          firstName: " Alex ",
+          lastName: " Hylio ",
+          email: "sashok@aol.com",
+          title: "The Man"
+        })
+        .expect(200)
+        .expect(res => {
+          //console.log(res);
+          expect(res.body).to.have.property("firstName");
+          expect(res.body.firstName).to.equal(" Alex ");
+          expect(res.body).to.have.property("lastName");
+          expect(res.body.lastName).to.equal(" Hylio ");
+        })
+        .end(function(err, res) {
+          if (err) throw err;
+          done();
+        });
+    });
+    it("sends 500 on a bad request", function(done) {
+      request(app)
+        .post("/api/employees")
+        .send({})
+        .expect(500)
+        .end(function(err, res) {
+          if (err) throw err;
+          done();
+        });
+    });
+  });
+});
+
+describe("delete routes", function() {
+  describe("DELETE /api/employees/:id", function() {
+    it("responds ", function(done) {
+      request(app)
+        .del(`/api/employees/${Math.ceil(Math.random() * 200)}`)
+        .expect(204)
+
+        .end(function(err, res) {
+          if (err) throw err;
+          done();
+        });
+    });
+    it("sends 400 on a bad request", function(done) {
+      request(app)
+        .get("/api/employees/a")
+        .expect(400)
+        .end(function(err, res) {
+          if (err) throw err;
+          done();
+        });
+    });
   });
 });

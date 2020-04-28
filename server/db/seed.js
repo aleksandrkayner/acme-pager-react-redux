@@ -1,6 +1,6 @@
-const faker = require('faker');
-const colors = require('colors/safe');
-const { db, Employee } = require('./index.js');
+const faker = require("faker");
+const colors = require("colors/safe");
+const { db, Employee } = require("./index.js");
 
 // Adjust this number to create more/less employees
 const TOTAL_EMPLOYEES = 325;
@@ -16,7 +16,7 @@ const generateSingleEmployee = () => {
 
 const generateEmployees = numEmployees => {
   return Array(numEmployees)
-    .fill('')
+    .fill("")
     .map(() => generateSingleEmployee());
 };
 
@@ -29,15 +29,15 @@ const createEmployees = numEmployees => {
 const seed = numEmployees => {
   db.sync({ force: true })
     .then(() => {
-      console.log(colors.america('seeding employees...'));
+      console.log(colors.america("seeding employees..."));
       return createEmployees(numEmployees);
     })
     .then(() => {
-      console.log(colors.rainbow('seeding complete'));
+      console.log(colors.rainbow("seeding complete"));
       db.close();
     })
     .catch(e => {
-      console.error('seeding error', e);
+      console.error("seeding error", e);
       db.close();
     });
 };

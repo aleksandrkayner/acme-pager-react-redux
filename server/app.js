@@ -66,7 +66,7 @@ app.get("/api/employees/:page?", (req, res, next) => {
   const resultsPerPage = 50;
   // pageNum is zero indexed
   let pageNum = req.params.page;
-  console.log("12121212121212121212121", pageNum);
+  //console.log("12121212121212121212121", pageNum);
   if (pageNum === undefined) {
     pageNum = 0;
   } else if (isNaN(pageNum)) {
@@ -86,7 +86,7 @@ app.get("/api/employees/:page?", (req, res, next) => {
   });
 });
 app.use((err, req, res, next) => {
-  console.error(err);
+  //console.error(err);
   res.status(500).send({ message: err.message });
 });
 module.exports = { app };

@@ -91,8 +91,6 @@ const editEmployee = (firstName, lastName, email, title, id, push) => {
 };
 
 const loadEmployees = page => {
-  console.log("from storishe", store);
-  console.log("page from thunk", page);
   return async dispatch => {
     let employees = await axios.get(`/api/employees/${page}`);
     dispatch(_loadEmployees(employees.data));
@@ -115,12 +113,7 @@ const create = (firstName, lastName, email, title, push) => {
       title: title
     });
     let lastPage = Math.ceil(store.getState().count / 50);
-    console.log(
-      "from create create",
-      store.getState().rows.length,
-      store.getState().count,
-      lastPage
-    );
+
     push(`/employees/${lastPage - 1}`);
     return dispatch(_create(employee.data));
   };
